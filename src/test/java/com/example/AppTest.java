@@ -1,4 +1,5 @@
-import com.example.MergeSort;
+package com.example;
+
 import com.example.metrics.*;
 
 import org.junit.jupiter.api.Test;
