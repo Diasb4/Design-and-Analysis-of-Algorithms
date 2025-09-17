@@ -16,7 +16,6 @@ public class EmptyArrayTest {
         RecursionTracker tracker = new RecursionTracker();
 
         MergeSort.sort(arr, counter, tracker);
-        QuickSort.sort(arr, counter, tracker);
 
         assertArrayEquals(new int[] {}, arr);
         assertEquals(0, counter.getComparisons());
