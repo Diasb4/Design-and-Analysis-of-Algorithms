@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.example;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -27,3 +28,5 @@ public class QuickSortTest {
         System.out.println("Max depth   = " + tracker.getMaxDepth());
     }
 }
+=======
+>>>>>>> 1cbd30ec956178fe279171628f34885839a4d381
