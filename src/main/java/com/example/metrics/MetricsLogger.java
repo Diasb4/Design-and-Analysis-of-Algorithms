@@ -9,7 +9,6 @@ public class MetricsLogger {
 
     public MetricsLogger(String fileName) {
         this.fileName = fileName;
-        // Заголовки CSV
         try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
             pw.println("algorithm,n,time,comparisons,assignments,maxDepth");
         } catch (IOException e) {
