@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import com.example.metrics.OperationCounter;
 import com.example.metrics.RecursionTracker;
-import com.example.util.ArrayUtils;
 
 public class DeterministicSelect {
 
