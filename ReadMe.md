@@ -1,68 +1,25 @@
-# Algorithms Report
+Assignment 1 Report
 
-## Overview
-This project implements and analyzes four core algorithms in Java: **MergeSort, QuickSort, Deterministic Select (Median-of-Medians), and Closest Pair of Points in 2D**.  
-The focus is both on theoretical guarantees (recurrence relations and asymptotic bounds) and on practical performance aspects such as recursion depth, memory allocations, and cache behavior.
+Architecture notes
+All algorithms were implemented with counters for comparisons, assignments, and recursion depth. Recursion depth was kept safe by design: QuickSort and Select always recurse on the smaller side, MergeSort naturally has logarithmic depth, and Closest Pair also splits by halves. Allocations were minimized. For example, MergeSort uses a reusable buffer and Closest Pair only performs one initial sort. A command line interface was added to run algorithms and export results to CSV for later plotting.
 
----
+Recurrence analysis
 
-## Implemented Algorithms
+MergeSort
+The recurrence is T(n) = 2T(n/2) + O(n). By the Master Theorem this is Case 2, so the result is Theta(n log n). For small n a cut-off to insertion sort was used to reduce overhead.
 
-### 1. MergeSort (Divide & Conquer)
-- **Features:**
-  - Linear merge with a reusable buffer.
-  - Small-n cutoff using insertion sort for efficiency.
-- **Recurrence:**  
-  T(n) = 2T(n/2) + Θ(n).  
-  By Master Theorem (Case 2), complexity is Θ(n log n).
-- **Notes:** Reusable buffer reduces memory allocations and improves cache performance.
+QuickSort (randomized pivot)
+The expected recurrence is T(n) = T(alpha n) + T((1-alpha)n) + O(n) where alpha is random. The expected running time is Theta(n log n). The worst case is Theta(n^2), but randomized pivots make it very unlikely. By always recursing into the smaller partition the recursion depth stays about O(log n).
 
-### 2. QuickSort (Robust Version)
-- **Features:**
-  - Randomized pivot selection to avoid worst-case scenarios.
-  - Recurses only on the smaller partition, iterates over the larger one → O(log n) stack usage.
-- **Recurrence (average case):**  
-  T(n) = T(n/2) + T(n/2) + Θ(n) → Θ(n log n).
-- **Notes:** Often faster than MergeSort in practice due to in-place partitioning and better cache locality.
+Deterministic Select (Median of Medians)
+The algorithm splits into groups of 5, finds the median of medians, and recurses only into the needed side. The recurrence is T(n) = T(n/5) + T(7n/10) + O(n). By Akra–Bazzi the result is Theta(n). The method guarantees linear time but has larger constants compared to randomized QuickSelect.
 
-### 3. Deterministic Select (Median-of-Medians)
-- **Features:**
-  - Groups of 5, median of medians pivot selection.
-  - In-place partitioning.
-  - Recursion only on the necessary side (prefer the smaller side).
-- **Recurrence:**  
-  T(n) ≤ T(n/5) + T(7n/10) + Θ(n) → Θ(n).
-- **Notes:** Guarantees linear time but slower constants compared to randomized selection.
+Closest Pair of Points
+The algorithm sorts by x, divides, and then checks the strip by y ordering. The recurrence is T(n) = 2T(n/2) + O(n). This matches Master Theorem Case 2, so the result is Theta(n log n). Constant factors depend on the implementation of the strip check and the initial sorting.
 
-### 4. Closest Pair of Points (2D)
-- **Features:**
-  - Sort points by x-coordinate, recursive divide.
-  - Merge step checks the “strip” around the division line using y-sorted order.
-  - Uses the 7–8 neighbor scan method in the strip.
-- **Recurrence:**  
-  T(n) = 2T(n/2) + Θ(n) → Θ(n log n).
-- **Notes:** Efficient geometric algorithm; practical performance depends on sorting and memory layout.
+Plots
+(to be added from CSV results)
+Graphs will include time versus n and recursion depth versus n. Discussion will mention constant factors like cache behavior and garbage collection.
 
----
-
-## Architecture Notes
-- Recursion depth is controlled by preferring smaller partitions (QuickSort, Select).  
-- Buffer reuse in MergeSort avoids repeated memory allocation.  
-- Small-n cutoff in MergeSort improves constant factors by using insertion sort.  
-- Closest Pair combines sorting with geometric checks, balancing divide-and-conquer with local scans.
-
----
-
-## Experimental Plots
-- **Time vs n:** Confirms asymptotic complexity; QuickSort usually fastest.  
-- **Depth vs n:** QuickSort stack bounded by O(log n); MergeSort depth also O(log n).  
-- **Constant factors:** Cache effects, garbage collection, and insertion sort cutoff strongly influence real runtimes.
-
----
-
-## Summary
-- Theoretical results (Θ bounds) align with measurements, though constant factors cause differences in speed.  
-- QuickSort performs best on average inputs.  
-- MergeSort is stable and predictable.  
-- Deterministic Select ensures linear time but is slower in practice.  
-- Closest Pair matches its O(n log n) bound and illustrates efficient use of geometry with divide-and-conquer.
+Summary
+MergeSort and Closest Pair followed the expected Theta(n log n) growth. QuickSort showed average Theta(n log n) performance with bounded recursion depth. Deterministic Select worked in Theta(n) time but was slower in practice than randomized QuickSelect because of higher constants. In general the measurements agreed with theory, and the differences can be explained by constant factors and low-level system effects.
