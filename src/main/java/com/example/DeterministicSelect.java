@@ -27,7 +27,7 @@ public class DeterministicSelect {
 
         int pivot = medianOfMedians(arr, left, right, counter);
 
-        int pivotIndex = ArrayUtils.partition(arr, left, right, pivot);
+        int pivotIndex = ArrayUtils.partition(arr, left, right, pivot, counter);
 
         if (k == pivotIndex) {
             return arr[k];
