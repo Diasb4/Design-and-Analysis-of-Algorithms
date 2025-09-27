@@ -8,6 +8,7 @@ Recurrence analysis
 MergeSort
 The recurrence is T(n) = 2T(n/2) + O(n). By the Master Theorem this is Case 2, so the result is Theta(n log n). For small n a cut-off to insertion sort was used to reduce overhead.
 
+
 QuickSort (randomized pivot)
 The expected recurrence is T(n) = T(alpha n) + T((1-alpha)n) + O(n) where alpha is random. The expected running time is Theta(n log n). The worst case is Theta(n^2), but randomized pivots make it very unlikely. By always recursing into the smaller partition the recursion depth stays about O(log n).
 
@@ -18,7 +19,9 @@ Closest Pair of Points
 The algorithm sorts by x, divides, and then checks the strip by y ordering. The recurrence is T(n) = 2T(n/2) + O(n). This matches Master Theorem Case 2, so the result is Theta(n log n). Constant factors depend on the implementation of the strip check and the initial sorting.
 
 Plots
-(to be added from CSV results)
+![Depth](https://github.com/Diasb4/Design-and-Analysis-of-Algorithms/raw/main/images/image.png)
+![Time](https://github.com/Diasb4/Design-and-Analysis-of-Algorithms/raw/main/images/image2.png)
+![Ops](https://github.com/Diasb4/Design-and-Analysis-of-Algorithms/raw/main/images/image3.png)
 Graphs will include time versus n and recursion depth versus n. Discussion will mention constant factors like cache behavior and garbage collection.
 
 Summary
