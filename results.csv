@@ -1,0 +1,8 @@
+mergesort,1000,2,27950,10
+quicksort,1000,0,25195,6
+select,1000,2,5150,1
+closestpair,1000,0,0,0
+closestpair,1000,0,0,0
+closestpair,1000,0,0,0
+closestpair,1000,13,33489,10
+closestpair,100000,269,5279172,17

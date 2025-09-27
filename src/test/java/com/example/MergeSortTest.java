@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppTest {
+public class MergeSortTest {
     @Test
     void testMergeSortMetrics() {
         int[] arr = { 5, 2, 9, 1, 3 };
